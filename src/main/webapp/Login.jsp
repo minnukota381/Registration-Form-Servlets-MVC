@@ -1,74 +1,107 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="ISO-8859-1">
-    <title>Login Form</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        
         body {
-            background-color: cyan;
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
         }
-        .container {
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 90%;
+            margin: auto;
+        }
+        .login-title {
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: 600;
             text-align: center;
-            padding: 20px;
         }
-        h1 {
-            color: blue;
+        .form-control {
+            border-radius: 50px;
+            padding: 12px 20px;
+            border: none;
+            background-color: #f0f0f0;
+            transition: all 0.3s ease;
         }
-        .error {
-            color: red;
+        .form-control:focus {
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.25);
+            background-color: #fff;
         }
-        .form-group {
-            margin-bottom: 15px;
+        .input-group-text {
+            border-radius: 50px;
+            border: none;
+            background-color: #f0f0f0;
         }
-        label {
-            color: blue;
-            display: block;
-            margin-bottom: 5px;
+        .btn-login {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 50px;
+            padding: 12px 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
         }
-        input[type="text"], input[type="password"], select {
-            padding: 5px;
-            margin: 0 0 10px 0;
-            width: 200px;
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
-        input[type="submit"], input[type="reset"] {
-            margin: 5px;
-            padding: 10px;
+        .btn-clear {
+            background-color: #f0f0f0;
+            color: #333;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .btn-clear:hover {
+            background-color: #e0e0e0;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Login Form</h1>
-        <c:if test="${not empty requestScope.ERROR}">
-            <div class="error">${requestScope.ERROR}</div>
-        </c:if>
-        <form action="LoginController" method="post">
-            <div class="form-group">
-                <label for="uid">UserId</label>
-                <input type="text" id="uid" name="uid" required>
+    <div class="login-container">
+        <h2 class="login-title">Welcome Back</h2>
+        <% if(request.getAttribute("ERROR") != null) { %>
+            <div class="alert alert-danger" role="alert">
+                ${requestScope.ERROR}
             </div>
-            <div class="form-group">
-                <label for="pwd">Password</label>
-                <input type="password" id="pwd" name="pwd" required>
+        <% } %>
+        <form action="LoginServlet" method="post">
+            <div class="mb-4">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="utype">UserType</label>
-                <select id="utype" name="utype" required>
-                    <option value="">--Please choose an option--</option>
-                    <option value="admin">Admin</option>
-                    <option value="faculty">Faculty</option>
-                    <option value="student">Student</option>
-                </select>
+            <div class="mb-4">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                </div>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Log In" name="action">
-                <input type="reset" value="Clear">
-            </div>
-            <div class="form-group">
-                <input type="submit" value="New User" name="action">
-                <input type="submit" value="Forgot Password" name="action">
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary btn-login">Login</button>
+                <button type="reset" class="btn btn-clear">Clear</button>
+                <button type="button" class="btn btn-login" onclick="window.location.href='Register.jsp'">Go to Register</button>
             </div>
         </form>
     </div>

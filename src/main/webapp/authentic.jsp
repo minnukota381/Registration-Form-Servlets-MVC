@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
+    <title>Welcome</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body {
@@ -15,55 +15,57 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-            color: #fff;
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+            color: #333;
         }
         .container {
-            background-color: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.9);
             border-radius: 20px;
             padding: 40px;
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             text-align: center;
             max-width: 400px;
             width: 90%;
         }
-        h2 {
+        h1 {
             margin-top: 0;
             font-weight: 600;
             font-size: 2.5em;
             margin-bottom: 20px;
-        }
-        .message {
-            font-size: 1.2em;
-            color: #4eff91;
-            margin-bottom: 30px;
-            font-weight: 300;
+            color: #2c3e50;
         }
         p {
             margin-bottom: 30px;
             font-size: 1.1em;
+            color: #34495e;
         }
-        a {
-            color: #fff;
-            text-decoration: none;
-            background-color: rgba(255, 255, 255, 0.2);
-            padding: 10px 20px;
+        .logout-btn {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1em;
             border-radius: 50px;
+            cursor: pointer;
             transition: all 0.3s ease;
-            font-weight: 400;
+            font-weight: 500;
         }
-        a:hover {
-            background-color: rgba(255, 255, 255, 0.3);
+        .logout-btn:hover {
+            background-color: #c0392b;
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Welcome</h2>
-        <p class="message">User Registration Successful</p>
-        <p>Please <a href="Login.jsp">log in</a> to continue.</p>
+        <h1>Hello, ${sessionScope.userName}!</h1>
+        <p>Welcome to the authenticated area.</p>
+
+        <!-- Logout Form -->
+        <form action="LogoutServlet" method="post">
+            <button type="submit" class="logout-btn">Logout</button>
+        </form>
     </div>
 </body>
 </html>
