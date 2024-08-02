@@ -1,13 +1,14 @@
 package com.mvc.controller;
 
 import java.io.IOException;
+
+import com.mvc.bean.RegisterBean;
+import com.mvc.dao.RegisterDao;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import com.mvc.bean.RegisterBean;
-import com.mvc.dao.RegisterDao;
 
 public class RegisterServlet extends HttpServlet {
 
@@ -32,7 +33,7 @@ public class RegisterServlet extends HttpServlet {
 
         // Create RegisterDao object to handle database operations
         RegisterDao registerDao = new RegisterDao();
-        
+
         try {
             // Attempt to register the user
             String userRegistered = registerDao.registerUser(registerBean);

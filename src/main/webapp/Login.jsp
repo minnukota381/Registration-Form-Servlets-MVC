@@ -101,7 +101,7 @@
             <div class="d-grid gap-2">
                 <button type="submit" class="btn btn-primary btn-login">Login</button>
                 <button type="reset" class="btn btn-clear">Clear</button>
-                <button type="button" class="btn btn-login" onclick="window.location.href='Register.jsp'">Go to Register</button>
+                <button type="button" class="btn btn-login" onclick="window.location.href='Register.jsp'">Go to Register</button>                
             </div>
         </form>
     </div>
